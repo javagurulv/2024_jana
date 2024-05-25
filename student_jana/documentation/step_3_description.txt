@@ -1,0 +1,29 @@
+**Задание**
+1. Запустить build всего проекта через Terminal IJ
+2. Запустить build моего модуля через Terminal IJ
+
+**Краткое описание процесса выполнения**
+Открыть Terminal
+Написать команду, нажать Enter
+
+./gradlew build - для всего проекта
+./gradlew :student_lastname_firstname:build - для своего модуля
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+научилась использовать Terminal
+
+**Сколько потратил времени на выполнение задачи?**
+30 минут
+
+**Как убедился в том, что задание выполнено правильно?**
+логи
+
+**Комментарий в свободной форме**
+сборка всего проекта упала из-за
+ What went wrong:
+ Execution failed for task ':teacher:step_218:test'.
+ > There were failing tests. See the report at: file:///C:/Users/yanas/IdeaProjects/2024_jana/teacher/step_218/build/reports/tests/test/index.html
+
+build моего модуля успешно отработал
+BUILD SUCCESSFUL in 4s
+5 actionable tasks: 5 up-to-date
