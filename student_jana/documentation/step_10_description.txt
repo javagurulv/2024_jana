@@ -1,0 +1,70 @@
+**Задание**
+Ваша задача: в классе TravelCalculatePremiumRequest создать
+- дефолтный конструктор (конструктор без параметров);
+- конструктор для задания начальных значений всем свойствам;
+- get/set методы для всех свойств класса.
+
+**Краткое описание процесса выполнения**
+Нашла класс  TravelCalculatePremiumRequest
+Зашла в свой модуль
+папка src->main->java->org.javaguru.travel.insurance->rest->TravelCalculatePremiumRequest
+Открыла
+Посмотрела содержимое
+Дефолтный конструктор там уже был
+ public TravelCalculatePremiumRequest() { }
+
+ Конструктор для задания начальных значений всем свойствам там тоже был
+   public TravelCalculatePremiumRequest(String personFirstName,
+                                          String personLastName,
+                                          Date agreementDateFrom,
+                                          Date agreementDateTo) {
+         this.personFirstName = personFirstName;
+         this.personLastName = personLastName;
+         this.agreementDateFrom = agreementDateFrom;
+         this.agreementDateTo = agreementDateTo;
+     }
+
+get/set методы тоже были
+public String getPersonFirstName() {
+        return personFirstName;
+    }
+
+    public void setPersonFirstName(String personFirstName) {
+        this.personFirstName = personFirstName;
+    }
+
+    public String getPersonLastName() {
+        return personLastName;
+    }
+
+    public void setPersonLastName(String personLastName) {
+        this.personLastName = personLastName;
+    }
+
+    public Date getAgreementDateFrom() {
+        return agreementDateFrom;
+    }
+
+    public void setAgreementDateFrom(Date agreementDateFrom) {
+        this.agreementDateFrom = agreementDateFrom;
+    }
+
+    public Date getAgreementDateTo() {
+        return agreementDateTo;
+    }
+
+    public void setAgreementDateTo(Date agreementDateTo) {
+        this.agreementDateTo = agreementDateTo;
+    }
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+ничего
+
+**Сколько потратил времени на выполнение задачи?**
+30 минут
+
+**Как убедился в том, что задание выполнено правильно?**
+не уверена
+
+**Комментарий в свободной форме**
+я в замешательстве, потому что то, что надо было добавить уже было
