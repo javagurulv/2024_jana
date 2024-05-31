@@ -4,6 +4,10 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,9 +21,7 @@ class TravelCalculatePremiumServiceImplTest {
         request.setPersonFirstName("Name");
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(),request.getPersonFirstName());
-        System.out.println("First name test finished");
-        System.out.println(response.getPersonFirstName());
-        System.out.println(request.getPersonFirstName());
+
 
     }
     @Test
@@ -28,9 +30,7 @@ class TravelCalculatePremiumServiceImplTest {
         request.setPersonLastName("Surname");
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getPersonLastName(),request.getPersonLastName());
-        System.out.println("Last name test finished");
-        System.out.println(response.getPersonLastName());
-        System.out.println(request.getPersonLastName());
+
     }
     @Test
     public void testgetAgreementDateTo() {
@@ -38,9 +38,7 @@ class TravelCalculatePremiumServiceImplTest {
         request.setAgreementDateTo(new Date());
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getAgreementDateTo(),request.getAgreementDateTo());
-        System.out.println("Date To test finished");
-        System.out.println(response.getAgreementDateTo());
-        System.out.println(request.getAgreementDateTo());
+
     }
     @Test
     public void testgetAgreementDateFrom() {
@@ -48,9 +46,26 @@ class TravelCalculatePremiumServiceImplTest {
         request.setAgreementDateFrom(new Date());
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getAgreementDateFrom(),request.getAgreementDateFrom());
-        System.out.println("Date From test finished");
-        System.out.println(response.getAgreementDateFrom());
-        System.out.println(request.getAgreementDateFrom());
+
+    }
+    @Test
+    public void testgetAgreementDatePrice() {
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+
+        LocalDate agreementDateFrom = LocalDate.of(2024, 5, 24);
+        LocalDate agreementDateTo = LocalDate.of(2024, 5, 27);
+
+        Date fromDate = Date.from(agreementDateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        Date toDate = Date.from(agreementDateTo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        request.setAgreementDateFrom(fromDate);
+        request.setAgreementDateTo(toDate);
+
+        TravelCalculatePremiumResponse response =service.calculatePremium(request);
+        System.out.println(response.getAgreementPrice());
+
+        assertEquals(response.getAgreementPrice(),request.getAgreementPrice());
+
     }
 
 }
