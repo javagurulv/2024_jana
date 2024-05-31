@@ -3,11 +3,9 @@ package org.javaguru.travel.insurance.core;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.temporal.ChronoUnit;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,51 +19,40 @@ class TravelCalculatePremiumServiceImplTest {
         request.setPersonFirstName("Name");
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(),request.getPersonFirstName());
-
-
     }
+
     @Test
     public void testPersonLastName() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonLastName("Surname");
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         assertEquals(response.getPersonLastName(),request.getPersonLastName());
-
     }
-    @Test
-    public void testgetAgreementDateTo() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
-        request.setAgreementDateTo(new Date());
-        TravelCalculatePremiumResponse response =service.calculatePremium(request);
-        assertEquals(response.getAgreementDateTo(),request.getAgreementDateTo());
 
+    @Test
+    public void testGetAgreementDateTo() throws ParseException {
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumResponse response =service.calculatePremium(request);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date expectedDateTo = dateFormat.parse("2024-05-27");
+        assertEquals(response.getAgreementDateTo(),expectedDateTo);
     }
-    @Test
-    public void testgetAgreementDateFrom() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
-        request.setAgreementDateFrom(new Date());
-        TravelCalculatePremiumResponse response =service.calculatePremium(request);
-        assertEquals(response.getAgreementDateFrom(),request.getAgreementDateFrom());
 
+    @Test
+    public void testGetAgreementDateFrom() throws ParseException {
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumResponse response =service.calculatePremium(request);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date expectedDate = dateFormat.parse("2024-05-24");
+        assertEquals(response.getAgreementDateFrom(),expectedDate);
     }
+
     @Test
-    public void testgetAgreementDatePrice() {
+    public void testGetAgreementDatePrice() {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
-
-        LocalDate agreementDateFrom = LocalDate.of(2024, 5, 24);
-        LocalDate agreementDateTo = LocalDate.of(2024, 5, 27);
-
-        Date fromDate = Date.from(agreementDateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        Date toDate = Date.from(agreementDateTo.atStartOfDay(ZoneId.systemDefault()).toInstant());
-
-        request.setAgreementDateFrom(fromDate);
-        request.setAgreementDateTo(toDate);
-
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
-        System.out.println(response.getAgreementPrice());
-
-        assertEquals(response.getAgreementPrice(),request.getAgreementPrice());
-
+        BigDecimal expectedAgreementPrice = new BigDecimal(3);
+        assertEquals(expectedAgreementPrice,response.getAgreementPrice());
     }
 
 }

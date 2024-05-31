@@ -3,9 +3,9 @@ package org.javaguru.travel.insurance.core;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.junit.jupiter.api.Test;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -18,10 +18,13 @@ public class TravelCalculatePremiumServiceImplAIOneTest {
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonFirstName("John");
         request.setPersonLastName("Doe");
-        Date dateFrom = new Date();
-        Date dateTo = new Date();
-        request.setAgreementDateFrom(dateFrom);
-        request.setAgreementDateTo(dateTo);
+        LocalDate agreementDateTo = LocalDate.of(2024, 5, 27);
+        Date toDate = Date.from(agreementDateTo.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        request.setAgreementDateTo(toDate);
+
+        LocalDate agreementDateFrom = LocalDate.of(2024, 5, 24);
+        Date fromDate = Date.from(agreementDateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        request.setAgreementDateFrom(fromDate);
 
         // Вызываем метод calculatePremium
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
@@ -29,8 +32,8 @@ public class TravelCalculatePremiumServiceImplAIOneTest {
         // Проверяем, что свойства объекта response установлены правильно
         assertEquals("John", response.getPersonFirstName());
         assertEquals("Doe", response.getPersonLastName());
-        assertEquals(dateFrom, response.getAgreementDateFrom());
-        assertEquals(dateTo, response.getAgreementDateTo());
+        assertEquals(fromDate, response.getAgreementDateFrom());
+        assertEquals(toDate, response.getAgreementDateTo());
     }
 
     @Test

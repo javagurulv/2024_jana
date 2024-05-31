@@ -1,7 +1,6 @@
 package org.javaguru.travel.insurance.rest;
 
 import java.math.BigDecimal;
-import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class TravelCalculatePremiumResponse {
@@ -57,10 +56,11 @@ public class TravelCalculatePremiumResponse {
         this.agreementDateTo = agreementDateTo;
     }
 
-    public BigDecimal getAgreementPrice() {return agreementPrice;}
+    public BigDecimal getAgreementPrice() {
+        return agreementPrice;}
 
-    public void setAgreementPrice(BigDecimal agreementPrice) {this.agreementPrice = agreementPrice;}
+    public void setAgreementPrice(BigDecimal agreementPrice) {
+        this.agreementPrice = agreementPrice;}
 
 }
-
 
