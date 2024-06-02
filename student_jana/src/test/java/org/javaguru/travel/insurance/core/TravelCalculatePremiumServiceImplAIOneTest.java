@@ -1,4 +1,4 @@
-/*package org.javaguru.travel.insurance.core;
+package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
@@ -10,11 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TravelCalculatePremiumServiceImplAIOneTest {
+    private DateTimeService dateTimeService = new DateTimeService();
 
     @Test
     public void testCalculatePremium_WithValidRequest_ShouldSetAllResponseProperties() {
         // Создаем сервис и запрос
-        TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService);
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         request.setPersonFirstName("John");
         request.setPersonLastName("Doe");
@@ -39,11 +40,11 @@ public class TravelCalculatePremiumServiceImplAIOneTest {
     @Test
     public void testCalculatePremium_WithNullRequest_ShouldThrowNullPointerException() {
         // Создаем сервис
-        TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl();
+        TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
         // Проверяем, что вызывая метод calculatePremium с null, выбрасывается NullPointerException
         assertThrows(NullPointerException.class, () -> {
             service.calculatePremium(null);
         });
     }
-}*/
+}

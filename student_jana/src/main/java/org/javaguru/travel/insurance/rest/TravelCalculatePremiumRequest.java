@@ -13,11 +13,13 @@ public class TravelCalculatePremiumRequest {
     }
 
     public TravelCalculatePremiumRequest(String personFirstName,
-                                         String personLastName) {
+                                         String personLastName, Date agreementDateFrom, Date agreementDateTo) {
         this.personFirstName = personFirstName;
         this.personLastName = personLastName;
-        this.agreementDateFrom = new Date(124, 4, 24);;
-        this.agreementDateTo = new Date(124, 4, 27);;
+        this.agreementDateFrom = agreementDateFrom;
+                //new Date(124, 4, 24);;
+        this.agreementDateTo = agreementDateTo;
+                //new Date(124, 4, 27);;
     }
 
     public String getPersonFirstName() {

@@ -15,42 +15,52 @@ class TravelCalculatePremiumServiceImplTest {
     private TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(dateTimeService);
 
     @Test
-    public void testPersonFirstName() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Name", "Surname");
+    public void testPersonFirstName() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-24");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Name", "Surname",agreementDateFrom,agreementDateTo);
         request.setPersonFirstName("Name");
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
 
     @Test
-    public void testPersonLastName() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Name" ,"Surname");
+    public void testPersonLastName() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-24");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("Name" ,"Surname",agreementDateFrom,agreementDateTo);
         request.setPersonLastName("Surname");
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getPersonLastName(), request.getPersonLastName());
     }
    @Test
     public void testGetAgreementDateTo() throws ParseException {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        request.setAgreementDateTo(dateFormat.parse("2024-05-27"));
+        Date agreementDateFrom = dateFormat.parse("2024-05-24");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name", "surname", agreementDateFrom, agreementDateTo);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
-        Date responseDateTo = response.getAgreementDateTo();
-        assertEquals(dateFormat.parse("2024-05-27"), responseDateTo);
+        assertEquals(agreementDateTo, response.getAgreementDateTo());
     }
 
     @Test
     public void testGetAgreementDateFrom() throws ParseException {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
-        TravelCalculatePremiumResponse response = service.calculatePremium(request);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date expectedDate = dateFormat.parse("2024-05-24");
-        assertEquals(response.getAgreementDateFrom(), expectedDate);
+        Date agreementDateFrom = dateFormat.parse("2024-05-24");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateFrom,agreementDateTo);
+        TravelCalculatePremiumResponse response = service.calculatePremium(request);
+        assertEquals(response.getAgreementDateFrom(), agreementDateFrom);
     }
 
     @Test
-    public void testGetAgreementDatePrice() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+    public void testGetAgreementDatePrice() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-24");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         BigDecimal expectedAgreementPrice = new BigDecimal(3);
         assertEquals(expectedAgreementPrice, response.getAgreementPrice());
