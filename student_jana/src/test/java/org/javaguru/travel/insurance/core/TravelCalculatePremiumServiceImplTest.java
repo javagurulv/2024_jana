@@ -35,7 +35,9 @@ class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date expectedDateTo = dateFormat.parse("2024-05-27");
-        assertEquals(response.getAgreementDateTo(),expectedDateTo);
+        Date responseDateTo = response.getAgreementDateTo();
+        assertEquals("expected"+expectedDateTo,"actual"+responseDateTo);
+
     }
 
     @Test
@@ -49,10 +51,11 @@ class TravelCalculatePremiumServiceImplTest {
 
     @Test
     public void testGetAgreementDatePrice() {
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest();
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest()
         TravelCalculatePremiumResponse response =service.calculatePremium(request);
         BigDecimal expectedAgreementPrice = new BigDecimal(3);
         assertEquals(expectedAgreementPrice,response.getAgreementPrice());
+        System.out.println(response.getAgreementPrice());
     }
 
 }

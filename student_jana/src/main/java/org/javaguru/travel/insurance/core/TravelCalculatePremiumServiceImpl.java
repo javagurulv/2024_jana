@@ -4,39 +4,31 @@ import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
 import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
 
 @Component
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
+    //Для того чтобы воспользоваться новым классом в
+    //TravelCalculatePremiumServiceImpl просто создайте конструктор
+    //принимающий его в качестве параметра и сохраняющего в свойство класса
+    private DateTimeService dateTimeService;
+
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
         TravelCalculatePremiumResponse response = new TravelCalculatePremiumResponse();
+
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
-        Date agreementDateFrom = calculateAgreementDateFrom();
-        Date agreementDateTo = calculateAgreementDateTo();
-        response.setAgreementDateFrom(agreementDateFrom);
-        response.setAgreementDateTo(agreementDateTo);
-        BigDecimal daysBetween=calculateDaysBetweenAgreementDateToAndAgreementDateFrom();
+
+        dateTimeService.setAgreementDateTo(request.getAgreementDateTo());
+        dateTimeService.setAgreementDateFrom(request.getAgreementDateFrom());
+        //присваиваю значения из request, чтобы не были равны нулю
+        response.setAgreementDateFrom(dateTimeService.getAgreementDateFrom());
+        response.setAgreementDateTo(dateTimeService.getAgreementDateTo());
+        // вызываю метод из класса DateTimeService
+        BigDecimal daysBetween=dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom();
         response.setAgreementPrice(new BigDecimal(String.valueOf(daysBetween)));
         return response;
-    }
 
-        private Date calculateAgreementDateFrom(){
-            LocalDate agreementDateFrom = LocalDate.of(2024, 5, 24);
-            return Date.from(agreementDateFrom.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        }
-        private Date calculateAgreementDateTo(){
-            LocalDate agreementDateTo = LocalDate.of(2024, 5, 27);
-            return Date.from(agreementDateTo.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        }
-    private BigDecimal calculateDaysBetweenAgreementDateToAndAgreementDateFrom(){
-        long diff = calculateAgreementDateTo().getTime() - calculateAgreementDateFrom().getTime();
-        var daysBetween = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        return (new BigDecimal(daysBetween));
     }
 }

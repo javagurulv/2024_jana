@@ -13,13 +13,11 @@ public class TravelCalculatePremiumRequest {
     }
 
     public TravelCalculatePremiumRequest(String personFirstName,
-                                         String personLastName,
-                                         Date agreementDateFrom,
-                                         Date agreementDateTo) {
+                                         String personLastName) {
         this.personFirstName = personFirstName;
         this.personLastName = personLastName;
-        this.agreementDateFrom = agreementDateFrom;
-        this.agreementDateTo = agreementDateTo;
+        this.agreementDateFrom = new Date(124, 4, 24);;
+        this.agreementDateTo = new Date(124, 4, 27);;
     }
 
     public String getPersonFirstName() {
@@ -39,7 +37,6 @@ public class TravelCalculatePremiumRequest {
     }
 
     public Date getAgreementDateFrom() {
-        agreementDateFrom=new Date(2024, 5, 24);
         return agreementDateFrom;
     }
 
@@ -48,7 +45,6 @@ public class TravelCalculatePremiumRequest {
     }
 
     public Date getAgreementDateTo(){
-        agreementDateTo=new Date(2024, 5, 27);
         return agreementDateTo;
     }
 
