@@ -1,0 +1,28 @@
+**Задание**
+Ваша задача заменить в тесте TravelCalculatePremiumServiceImplTest
+создание инстанции объекта DateTimeService на создание мок объекта,
+задать ему нужное поведение для успешного выполнения теста.
+
+**Краткое описание процесса выполнения**
+создала мок объект
+mockDateTimeService передала в качестве аргумента в конструктор TravelCalculatePremiumServiceImpl для расчета дней
+в тестах заменила расчет через dateTimeService моком
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+мок
+**Сколько потратил времени на выполнение задачи?**
+примерно 2 часа
+
+**Как убедился в том, что задание выполнено правильно?**
+запустила тесты и build
+
+
+**Комментарий в свободной форме**
+тесты прошли, ошибок не было, но был большой warning
+не поняла, что с ним делать
+
+WARNING:A Java agent has been loaded dynamically (C:\Users\yanas\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy-agent\1.14.9\dfb8707031008535048bad2b69735f46d0b6c5e5\byte-buddy-agent-1.14.9.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
