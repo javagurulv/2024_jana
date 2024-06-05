@@ -1,6 +1,16 @@
 package org.javaguru.travel.insurance.rest;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import java.util.Date;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 
 public class TravelCalculatePremiumRequest {
 
@@ -9,9 +19,8 @@ public class TravelCalculatePremiumRequest {
     private Date agreementDateFrom;
     private Date agreementDateTo;
 
-    public TravelCalculatePremiumRequest() {
+    /*public TravelCalculatePremiumRequest() {
     }
-
     public TravelCalculatePremiumRequest(String personFirstName,
                                          String personLastName,
                                          Date agreementDateFrom,
@@ -21,7 +30,6 @@ public class TravelCalculatePremiumRequest {
         this.agreementDateFrom = agreementDateFrom;
         this.agreementDateTo = agreementDateTo;
     }
-
     public String getPersonFirstName() {
         return personFirstName;
     }
@@ -52,6 +60,6 @@ public class TravelCalculatePremiumRequest {
 
     public void setAgreementDateTo(Date agreementDateTo) {
         this.agreementDateTo = agreementDateTo;
-    }
+    }*/
 }
 
