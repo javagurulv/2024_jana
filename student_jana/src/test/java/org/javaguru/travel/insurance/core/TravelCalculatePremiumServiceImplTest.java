@@ -1,3 +1,4 @@
+
 package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
@@ -31,11 +32,11 @@ class TravelCalculatePremiumServiceImplTest {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-                //.thenReturn(new BigDecimal(3));
+        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response=travelCalculatePremiumServiceImpl.calculatePremium(request);
-                //= service.calculatePremium(request);
+        //= service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
 
@@ -45,11 +46,11 @@ class TravelCalculatePremiumServiceImplTest {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-                //.thenReturn(new BigDecimal(3));
+        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-                //= service.calculatePremium(request);
+        //= service.calculatePremium(request);
         assertEquals(response.getPersonLastName(), request.getPersonLastName());
     }
 
@@ -59,11 +60,11 @@ class TravelCalculatePremiumServiceImplTest {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-                //.thenReturn(new BigDecimal(3));
+        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-                //= service.calculatePremium(request);
+        //= service.calculatePremium(request);
         assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
     }
 
@@ -73,11 +74,11 @@ class TravelCalculatePremiumServiceImplTest {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-                //.thenReturn(new BigDecimal(3));
+        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response =  travelCalculatePremiumServiceImpl.calculatePremium(request);
-                //= service.calculatePremium(request);
+        //= service.calculatePremium(request);
         assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
     }
 
@@ -87,13 +88,12 @@ class TravelCalculatePremiumServiceImplTest {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-                //.thenReturn(new BigDecimal(3));
+        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-                //= service.calculatePremium(request);
+        //= service.calculatePremium(request);
         BigDecimal expectedAgreementPrice = new BigDecimal(3);
         assertEquals(expectedAgreementPrice, response.getAgreementPrice());
     }
 }
-
