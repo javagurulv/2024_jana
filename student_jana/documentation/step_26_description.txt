@@ -1,0 +1,25 @@
+**Задание**
+Примените Lombok для генерации конструктора
+в классах
+- TravelCalculatePremiumServiceImpl
+- TravelCalculatePremiumController
+без модификатора доступа.
+
+**Краткое описание процесса выполнения**
+TravelCalculatePremiumController- тут перед классом добавила @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+TravelCalculatePremiumServiceImpl - тут перед классом добавила @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+еще в TravelCalculatePremiumServiceImpl добавила final в     private final DateTimeService dateTimeService;
+чтобы @RequiredArgsConstructor(access = AccessLevel.PACKAGE) отработала. прочитала что для этого необходимо или final или @NotNull
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+применять @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
+**Сколько потратил времени на выполнение задачи?**
+час
+
+**Как убедился в том, что задание выполнено правильно?**
+запустила тесты
+запустила build
+
+**Комментарий в свободной форме**
+сначала я перемудрила и хотела применить injections
+потом почитала теорию еще раз и поняла, что все гораздо проще
