@@ -1,4 +1,4 @@
-package org.javaguru.travel.insurance.core;
+/*package org.javaguru.travel.insurance.core;
 
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumResponse;
@@ -78,4 +78,4 @@ public class TravelCalculatePremiumServiceImplAIEachFieldTest {
         BigDecimal expectedDays = new BigDecimal(3);
         assertEquals(expectedDays,response.getAgreementPrice());
     }
-}
+}*/

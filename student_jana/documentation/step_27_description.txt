@@ -1,0 +1,34 @@
+**Задание**
+Ваша задача: ознакомиться с прототипом валидации и понять
+как он работает. Если в процессе изучения кода у вас возникнут
+вопросы, задавайте их!
+Внедрите код валидации предложенный ментором в свой проект!
+
+**Краткое описание процесса выполнения**
+скопировала код из папки teacher
+разобрала код
+исправила ошибки, чтобы код запустился
+1) в класс ValidationError добавила параметры public class ValidationError {
+                                                  private String field;
+                                                  private String message;
+                                              }
+они используются в TravelCalculatePremiumRequestValidator
+2) в TravelCalculatePremiumResponse исправила ошибка в конструкторе public TravelCalculatePremiumResponse(List<ValidationError> errors) {
+                                                                             this.errors = errors;
+                                                                         }
+и добавила переменная  private List<ValidationError> errors;
+3)в TravelCalculatePremiumServiceImpTest         when(requestValidator.validate(request)).thenReturn(List.of());
+разместила после создания экземпляра класса
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+повторила array и super
+
+**Сколько потратил времени на выполнение задачи?**
+много
+
+**Как убедился в том, что задание выполнено правильно?**
+Настройки сохранены.
+Запустился тест/build
+
+**Комментарий в свободной форме**
+пришлось повозиться

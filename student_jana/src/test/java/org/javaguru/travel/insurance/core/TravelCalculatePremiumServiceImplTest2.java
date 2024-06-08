@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -24,6 +26,8 @@ public class TravelCalculatePremiumServiceImplTest2 {
     private TravelCalculatePremiumServiceImpl service;
 
     private TravelCalculatePremiumRequest request;
+    @Mock private TravelCalculatePremiumRequestValidator requestValidator;
+
 
     @BeforeEach
     public void setUp() throws ParseException {
@@ -38,6 +42,7 @@ public class TravelCalculatePremiumServiceImplTest2 {
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateFrom,agreementDateTo);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         return request;
     }
 

@@ -14,15 +14,18 @@ import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class TravelCalculatePremiumServiceImplTest {
-    //DateTimeService mockDateTimeService = Mockito.mock(DateTimeService.class);
-    //private TravelCalculatePremiumService service = new TravelCalculatePremiumServiceImpl(mockDateTimeService);
+
     @Mock
     private DateTimeService dateTimeService;
+    @Mock private TravelCalculatePremiumRequestValidator requestValidator;
+
     @InjectMocks
     private TravelCalculatePremiumServiceImpl travelCalculatePremiumServiceImpl;
 
@@ -31,12 +34,10 @@ class TravelCalculatePremiumServiceImplTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         TravelCalculatePremiumResponse response=travelCalculatePremiumServiceImpl.calculatePremium(request);
-        //= service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
 
@@ -45,12 +46,10 @@ class TravelCalculatePremiumServiceImplTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-        //= service.calculatePremium(request);
         assertEquals(response.getPersonLastName(), request.getPersonLastName());
     }
 
@@ -59,12 +58,10 @@ class TravelCalculatePremiumServiceImplTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-        //= service.calculatePremium(request);
         assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
     }
 
@@ -73,12 +70,10 @@ class TravelCalculatePremiumServiceImplTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         TravelCalculatePremiumResponse response =  travelCalculatePremiumServiceImpl.calculatePremium(request);
-        //= service.calculatePremium(request);
         assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
     }
 
@@ -87,12 +82,10 @@ class TravelCalculatePremiumServiceImplTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        //when(mockDateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom, agreementDateTo))
-        //.thenReturn(new BigDecimal(3));
         when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(agreementDateFrom,agreementDateTo)).thenReturn(new BigDecimal(3));
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
+        when(requestValidator.validate(request)).thenReturn(List.of());
         TravelCalculatePremiumResponse response = travelCalculatePremiumServiceImpl.calculatePremium(request);
-        //= service.calculatePremium(request);
         BigDecimal expectedAgreementPrice = new BigDecimal(3);
         assertEquals(expectedAgreementPrice, response.getAgreementPrice());
     }
