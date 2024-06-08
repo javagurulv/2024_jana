@@ -4,8 +4,10 @@ import org.javaguru.travel.insurance.rest.ValidationError;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
 
 @Component
 public class TravelCalculatePremiumRequestValidator {
@@ -16,7 +18,7 @@ public class TravelCalculatePremiumRequestValidator {
     }
 
     private Optional<ValidationError> validatePersonFirstName(TravelCalculatePremiumRequest request) {
-        return (request.getPersonFirstName() == null || request.getPersonLastName().isEmpty())
+        return (request.getPersonFirstName() == null || request.getPersonFirstName().isEmpty())
                 ? Optional.of(new ValidationError("personFirstName", "Must not be empty!"))
                 : Optional.empty();
     }

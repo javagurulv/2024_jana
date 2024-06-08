@@ -1,0 +1,25 @@
+**Задание**
+Ваша задача: написать тесты к классу
+TravelCalculatePremiumRequestValidator,
+найти в нём ошибку и исправить ее.
+
+**Краткое описание процесса выполнения**
+в TravelCalculatePremiumRequestValidator в
+        return (request.getPersonFirstName() == null || request.getPersonFirstName().isEmpty())
+тут поменяла было return (request.getPersonFirstName() == null || request.getPersonLastName().isEmpty())
+добавила тесты в TravelCalculatePremiumRequestValidatorTest
+еще добавила преобразование ответа в toString
+
+**Что применил/использовал, чему научился в процессе выполнения задания?**
+гугл
+
+**Сколько потратил времени на выполнение задачи?**
+час
+
+**Как убедился в том, что задание выполнено правильно?**
+вывела значения
+запустила тесты
+запустила build
+
+**Комментарий в свободной форме**
+как тест на внимательность

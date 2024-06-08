@@ -12,4 +12,11 @@ import lombok.Setter;
 public class ValidationError {
     private String field;
     private String message;
+    @Override
+    public String toString() {
+        return "ValidationError{" +
+                "field='" + field + '\'' +
+                ", message='" + message + '\'' +
+                '}';
+    }
 }
