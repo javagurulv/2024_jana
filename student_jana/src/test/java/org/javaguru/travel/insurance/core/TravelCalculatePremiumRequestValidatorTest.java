@@ -55,5 +55,14 @@ public class TravelCalculatePremiumRequestValidatorTest {
         List<ValidationError> expected = new ArrayList<>();
         assertEquals(expected.toString(),result.toString());
     }
-
+    @Test
+    public void testDateFromIsNull() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,null);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        expected.add(new ValidationError("dateFrom", "Must not be empty!"));
+        assertEquals(expected.toString(),result.toString());
+    }
 }
