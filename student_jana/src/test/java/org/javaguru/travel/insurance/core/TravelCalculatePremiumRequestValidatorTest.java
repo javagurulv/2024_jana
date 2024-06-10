@@ -15,9 +15,9 @@ public class TravelCalculatePremiumRequestValidatorTest {
     @Test
     public void testFirstNameIsEmpty() throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date agreementDateFrom = dateFormat.parse("2024-05-24");
-        Date agreementDateTo = dateFormat.parse("2024-05-27");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("","surname", agreementDateFrom,agreementDateTo);
+        Date agreementDateFrom = dateFormat.parse("2024-05-28");
+        Date agreementDateTo = dateFormat.parse("2024-05-29");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("","surname", agreementDateTo,agreementDateFrom);
         List<ValidationError> result=validator.validate(request);
         List<ValidationError> expected = new ArrayList<>();
         expected.add(new ValidationError("personFirstName", "Must not be empty!"));
@@ -29,7 +29,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateFrom,agreementDateTo);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         List<ValidationError> result=validator.validate(request);
         List<ValidationError> expected = new ArrayList<>();
         assertEquals(expected.toString(),result.toString());
@@ -39,7 +39,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","", agreementDateFrom,agreementDateTo);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","", agreementDateTo,agreementDateFrom);
         List<ValidationError> result=validator.validate(request);
         List<ValidationError> expected = new ArrayList<>();
         expected.add(new ValidationError("personLastName", "Must not be empty!"));
@@ -50,7 +50,7 @@ public class TravelCalculatePremiumRequestValidatorTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-24");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
-        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateFrom,agreementDateTo);
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname", agreementDateTo,agreementDateFrom);
         List<ValidationError> result=validator.validate(request);
         List<ValidationError> expected = new ArrayList<>();
         assertEquals(expected.toString(),result.toString());
@@ -90,6 +90,37 @@ public class TravelCalculatePremiumRequestValidatorTest {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date agreementDateFrom = dateFormat.parse("2024-05-27");
         Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        assertEquals(expected.toString(),result.toString());
+    }
+    @Test
+    public void testDateToLessThanDateFrom() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-28");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        expected.add(new ValidationError("dateTo", "Must be greater than date from!"));
+        assertEquals(expected.toString(),result.toString());
+    }
+    @Test
+    public void testDateToIsGreaterThanDateFrom() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-28");
+        Date agreementDateTo = dateFormat.parse("2024-05-29");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        assertEquals(expected.toString(),result.toString());
+    }
+    @Test
+    public void testDateToIsEqualThanDateFrom() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-28");
+        Date agreementDateTo = dateFormat.parse("2024-05-28");
         TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
         List<ValidationError> result=validator.validate(request);
         List<ValidationError> expected = new ArrayList<>();
