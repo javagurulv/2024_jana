@@ -65,4 +65,34 @@ public class TravelCalculatePremiumRequestValidatorTest {
         expected.add(new ValidationError("dateFrom", "Must not be empty!"));
         assertEquals(expected.toString(),result.toString());
     }
+    @Test
+    public void testDateFromIsNotNull() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-27");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        assertEquals(expected.toString(),result.toString());
+    }
+    @Test
+    public void testDateToIsNull() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",null ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        expected.add(new ValidationError("dateTo", "Must not be empty!"));
+        assertEquals(expected.toString(),result.toString());
+    }
+    @Test
+    public void testDateToIsNotNull() throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date agreementDateFrom = dateFormat.parse("2024-05-27");
+        Date agreementDateTo = dateFormat.parse("2024-05-27");
+        TravelCalculatePremiumRequest request = new TravelCalculatePremiumRequest("name","surname",agreementDateTo ,agreementDateFrom);
+        List<ValidationError> result=validator.validate(request);
+        List<ValidationError> expected = new ArrayList<>();
+        assertEquals(expected.toString(),result.toString());
+    }
 }
