@@ -14,31 +14,29 @@ import java.util.List;
 
 class TravelCalculatePremiumServiceImpl implements TravelCalculatePremiumService {
 
-    private final DateTimeService dateTimeService;
+    private final TravelPremiumUnderwriting travelPremiumUnderwriting;
     private final TravelCalculatePremiumRequestValidator requestValidator;
 
     @Override
     public TravelCalculatePremiumResponse calculatePremium(TravelCalculatePremiumRequest request) {
-            List<ValidationError> errors = requestValidator.validate(request);
-            if (!errors.isEmpty()) {
-                return new TravelCalculatePremiumResponse(errors);
-            }
-            return createResponse(request);
+        List<ValidationError> errors = requestValidator.validate(request);
+        if (!errors.isEmpty()) {
+            return createResponse(errors);
         }
-    private TravelCalculatePremiumResponse createResponse(TravelCalculatePremiumRequest request) {
-        TravelCalculatePremiumResponse response=new TravelCalculatePremiumResponse();
-        populateResponseWithData(response,request);
-        response.setAgreementPrice(daysBetweenDayToAndDateFrom(response));
-        return response;
+            return createResponse(request, travelPremiumUnderwriting.calculatePremium(request));
     }
-    private void populateResponseWithData(TravelCalculatePremiumResponse response, TravelCalculatePremiumRequest request) {
+
+    private TravelCalculatePremiumResponse createResponse(List<ValidationError> errors) {
+        return new TravelCalculatePremiumResponse(errors);
+    }
+
+    private TravelCalculatePremiumResponse createResponse(TravelCalculatePremiumRequest request, BigDecimal premium) {
+        TravelCalculatePremiumResponse response=new TravelCalculatePremiumResponse();
         response.setPersonFirstName(request.getPersonFirstName());
         response.setPersonLastName(request.getPersonLastName());
         response.setAgreementDateTo(request.getAgreementDateTo());
         response.setAgreementDateFrom(request.getAgreementDateFrom());
-    }
-    private BigDecimal daysBetweenDayToAndDateFrom(TravelCalculatePremiumResponse response) {
-    BigDecimal daysBetween = dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(response.getAgreementDateTo(),response.getAgreementDateFrom());
-    return (new BigDecimal(String.valueOf(daysBetween)));
+        response.setAgreementPrice(premium);
+        return response;
     }
 }

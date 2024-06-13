@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-public class TravelCalculatePremiumResponse extends ValidationError{
+public class TravelCalculatePremiumResponse extends CoreResponse{
 
     private String personFirstName;
     private String personLastName;
@@ -22,7 +22,7 @@ public class TravelCalculatePremiumResponse extends ValidationError{
     private List<ValidationError> errors;
 
     public TravelCalculatePremiumResponse(List<ValidationError> errors) {
-        this.errors = errors;
+        super(errors);
     }
 }
 

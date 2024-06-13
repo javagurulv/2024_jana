@@ -13,7 +13,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -51,21 +50,25 @@ public class TravelCalculatePremiumServiceImplTest {
         TravelCalculatePremiumResponse response=service.calculatePremium(request);
         assertEquals(response.getPersonFirstName(), request.getPersonFirstName());
     }
+
     @Test
     public void testPersonLastName() throws ParseException {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(response.getPersonLastName(), request.getPersonLastName());
     }
+
     @Test
     public void testGetAgreementDateTo() throws ParseException {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(request.getAgreementDateTo(), response.getAgreementDateTo());
     }
+
     @Test
     public void testGetAgreementDateFrom() throws ParseException {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);
         assertEquals(request.getAgreementDateFrom(), response.getAgreementDateFrom());
     }
+
     @Test
     public void testGetAgreementDatePrice() throws ParseException {
         TravelCalculatePremiumResponse response = service.calculatePremium(request);

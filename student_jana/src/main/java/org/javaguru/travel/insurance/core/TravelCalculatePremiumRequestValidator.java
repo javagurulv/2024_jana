@@ -1,13 +1,15 @@
 package org.javaguru.travel.insurance.core;
+
 import org.javaguru.travel.insurance.rest.TravelCalculatePremiumRequest;
 import org.javaguru.travel.insurance.rest.ValidationError;
 import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Component
-public class TravelCalculatePremiumRequestValidator {
+class TravelCalculatePremiumRequestValidator {
 
     public List<ValidationError> validate(TravelCalculatePremiumRequest request) {
         List<ValidationError> errors = new ArrayList<>();
@@ -30,23 +32,26 @@ public class TravelCalculatePremiumRequestValidator {
                 ? Optional.of(new ValidationError("personLastName", "Must not be empty!"))
                 : Optional.empty();
     }
+
     private Optional<ValidationError> validateDateFrom(TravelCalculatePremiumRequest request) {
         return (request.getAgreementDateFrom() == null)
                 ? Optional.of(new ValidationError("dateFrom", "Must not be empty!"))
                 : Optional.empty();
     }
+
     private Optional<ValidationError> validateDateTo(TravelCalculatePremiumRequest request) {
         return (request.getAgreementDateTo() == null)
                 ? Optional.of(new ValidationError("dateTo", "Must not be empty!"))
                 : Optional.empty();
     }
+
     private Optional<ValidationError> validateDatoGreaterThanDateFrom(TravelCalculatePremiumRequest request) {
-        if ((request.getAgreementDateTo()!=null)&&(request.getAgreementDateFrom()!=null)){
-        return (request.getAgreementDateTo().before(request.getAgreementDateFrom()))
-                ? Optional.of(new ValidationError("dateTo", "Must be greater than date from!"))
-                : Optional.empty();
-    }
+        if ((request.getAgreementDateTo() != null) && (request.getAgreementDateFrom() != null)) {
+            return (request.getAgreementDateTo().before(request.getAgreementDateFrom()))
+                    ? Optional.of(new ValidationError("dateTo", "Must be greater than date from!"))
+                    : Optional.empty();
+        }
         return Optional.empty();
-}
+    }
 }
 
