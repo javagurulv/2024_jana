@@ -20,6 +20,7 @@ import static org.mockito.Mockito.when;
 
 public class TravelCalculatePremiumServiceImplTest {
     @Mock private DateTimeService dateTimeService;
+    @Mock private TravelPremiumUnderwriting travelPremiumUnderwriting;
 
     @InjectMocks
     private TravelCalculatePremiumServiceImpl service;
@@ -27,13 +28,10 @@ public class TravelCalculatePremiumServiceImplTest {
     private TravelCalculatePremiumRequest request;
     @Mock private TravelCalculatePremiumRequestValidator requestValidator;
 
-
     @BeforeEach
     public void setUp() throws ParseException {
         request = createRequestWithAllFields();
-        when(dateTimeService.calculateDaysBetweenAgreementDateToAndAgreementDateFrom(
-                request.getAgreementDateTo(), request.getAgreementDateFrom()))
-                .thenReturn(BigDecimal.valueOf(3));
+        when(travelPremiumUnderwriting.calculatePremium(request)).thenReturn(BigDecimal.valueOf(3));
     }
 
     private TravelCalculatePremiumRequest createRequestWithAllFields() throws ParseException {
